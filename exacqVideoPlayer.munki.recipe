@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Downloads the latest exacq video player disk image and imports into Munki.</string>
+    <key>Identifier</key>
+    <string>com.github.cabal95.munki.exacqVideoPlayer</string>
+    <key>Input</key>
+    <dict>
+        <key>NAME</key>
+        <string>exacq Video Player</string>
+        <key>MUNKI_REPO_SUBDIR</key>
+        <string>apps/edvr</string>
+        <key>pkginfo</key>
+        <dict>
+            <key>catalogs</key>
+            <array>
+                <string>testing</string>
+            </array>
+            <key>description</key>
+            <string>Security Camera recorded video player.</string>
+            <key>display_name</key>
+            <string>ePlayerPro</string>
+            <key>name</key>
+            <string>%NAME%</string>
+            <key>unattended_install</key>
+            <true/>
+        </dict>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>0.2.0</string>
+    <key>ParentRecipe</key>
+    <string>com.github.groob.download.exacqVisionClient</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pkg_path</key>
+                <string>%pathname%</string>
+                <key>repo_subdirectory</key>
+                <string>%MUNKI_REPO_SUBDIR%</string>
+		<key>additional_makepkginfo_options</key>
+		<array>
+			<string>--appname</string>
+			<string>ePlayerPro.app</string>
+		</array>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiImporter</string>
+        </dict>
+    </array>
+</dict>
+</plist>

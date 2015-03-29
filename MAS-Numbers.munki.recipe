@@ -16,7 +16,7 @@
 		<dict>
 			<key>catalogs</key>
 			<array>
-				<string>release</string>
+				<string>testing</string>
 			</array>
 			<key>display_name</key>
 			<string>%NAME%</string>
@@ -27,6 +27,6 @@
 		</dict>
 	</dict>
 	<key>ParentRecipe</key>
-	<string>com.github.nmcspadden.munki.appstore</string>
+	<string>com.github.nmcspadden.pkg.munki.appstore</string>
 </dict>
 </plist>

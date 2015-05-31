@@ -42,7 +42,7 @@
 			<key>Arguments</key>
 			<dict>
 				<key>filename</key>
-				<string>%NAME%.dmg</string>
+				<string>%NAME%.pkg</string>
 			</dict>
 		</dict>
 		<dict>
@@ -51,15 +51,24 @@
 		</dict>
 		<dict>
 			<key>Processor</key>
-			<string>Copier</string>
+			<string>FlatPkgUnpacker</string>
 			<key>Arguments</key>
 			<dict>
 				<key>destination_path</key>
-				<string>%RECIPE_CACHE_DIR%/%NAME%/%NAME%.app</string>
-				<key>source_path</key>
-				<string>%pathname%/CDM+.app</string>
-				<key>overwrite</key>
-				<true/>
+				<string>%RECIPE_CACHE_DIR%/mpkg</string>
+				<key>flat_pkg_path</key>
+				<string>%pathname%</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>Processor</key>
+			<string>PkgPayloadUnpacker</string>
+			<key>Arguments</key>
+			<dict>
+				<key>destination_path</key>
+				<string>%RECIPE_CACHE_DIR%/pkg</string>
+				<key>pkg_payload_path</key>
+				<string>%RECIPE_CACHE_DIR%/mpkg/CDM+.pkg/Payload</string>
 			</dict>
 		</dict>
 		<dict>
@@ -68,9 +77,9 @@
 			<key>Arguments</key>
 			<dict>
 				<key>input_plist_path</key>
-				<string>%RECIPE_CACHE_DIR%/%NAME%/%NAME%.app/Contents/Info.plist</string>
+				<string>%RECIPE_CACHE_DIR%/pkg/Applications/CDM+.app/Contents/Info.plist</string>
 				<key>output_plist_path</key>
-				<string>%RECIPE_CACHE_DIR%/%NAME%/%NAME%.app/Contents/Info.plist</string>
+				<string>%RECIPE_CACHE_DIR%/pkg/Applications/CDM+.app/Contents/Info.plist</string>
 				<key>plist_data</key>
 				<dict>
 					<key>CFBundleVersion</key>
@@ -86,7 +95,7 @@
 			<key>Arguments</key>
 			<dict>
 				<key>dmg_root</key>
-				<string>%RECIPE_CACHE_DIR%/%NAME%</string>
+				<string>%RECIPE_CACHE_DIR%/pkg/Applications</string>
 				<key>dmg_path</key>
 				<string>%RECIPE_CACHE_DIR%/%NAME%.dmg</string>
 				<key>dmg_megabytes</key>

@@ -10,7 +10,7 @@ from autopkglib import Processor, ProcessorError
 __all__ = ["SuranURLProvider"]
 
 FILE_INDEX_URL = 'http://download.cdmplus.com/cdm%s/catalog.txt'
-FILE_DOWNLOAD_URL = 'http://download.cdmplus.com/cdm%s/%s/cdm%s.dmg'
+FILE_DOWNLOAD_URL = 'http://download.cdmplus.com/cdm%s/%s/cdm%s.pkg'
 
 class SuranURLProvider(Processor):
 	'''Provides URL to the latest file.'''

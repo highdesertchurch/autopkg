@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads latest version of Things and imports into a Munki repo.</string>
+    <string>Downloads latest version of ProPresenter5 and imports into a Munki repo.</string>
     <key>Identifier</key>
-    <string>com.github.cabal95.munki.Things</string>
+    <string>com.github.cabal95.munki.ProPresenter5</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>

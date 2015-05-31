@@ -26,6 +26,24 @@
             <string>%NAME%</string>
             <key>unattended_install</key>
             <true/>
+            <key>postinstall_script</key>
+            <string>#!/bin/sh
+
+mkdir -p '/Users/Shared/Renewed Vision Media/Audio'
+mkdir -p '/Users/Shared/Renewed Vision Media/Images'
+mkdir -p '/Users/Shared/Renewed Vision Media/PDF'
+mkdir -p '/Users/Shared/Renewed Vision Media/Video'
+chown -R root:wheel '/Users/Shared/Renewed Vision Media'
+chmod -R a+rw '/Users/Shared/Renewed Vision Media'
+
+LIB='/Library/Application Support/RenewedVision'
+APP='/Applications/ProPresenter 5.app'
+mkdir -p '$LIB/Plugins'
+cp -a '$APP/Contents/Resources/RVCloudSync.app' '$LIB/'
+cp -a '$APP/Contents/PlugIns/'* '$LIB/Plugins/'
+
+defaults write /Library/Preferences/com.renewedvision.ProPresenter5.plist SUEnableAutomaticChecks -int 0
+exit 0</string>
         </dict>
     </dict>
     <key>MinimumVersion</key>

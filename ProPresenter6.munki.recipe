@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Downloads latest version of ProPresenter5 and imports into a Munki repo.</string>
+    <key>Identifier</key>
+    <string>com.github.cabal95.munki.ProPresenter6</string>
+    <key>Input</key>
+    <dict>
+        <key>NAME</key>
+        <string>ProPresenter6</string>
+        <key>MUNKI_REPO_SUBDIR</key>
+        <string>apps</string>
+        <key>pkginfo</key>
+        <dict>
+            <key>catalogs</key>
+            <array>
+                <string>testing</string>
+            </array>
+            <key>description</key>
+            <string>ProPresenter is a cross-platform (Mac and Windows) lyric and media presentation package built specifically to make high-quality live productions easy — such productions include worship gatherings, sporting events, conferences, or even broadcast television. Taking full advantage of the latest technologies of your computer, ProPresenter operators control a presentation on one screen, while dynamically affecting the visuals and lyrics experienced by an audience on one or more screens.</string>
+            <key>display_name</key>
+            <string>Pro Presenter 6</string>
+            <key>name</key>
+            <string>%NAME%</string>
+            <key>unattended_install</key>
+            <true/>
+            <key>postinstall_script</key>
+            <string>#!/bin/sh
+
+mkdir -p '/Users/Shared/Renewed Vision Media/Audio'
+mkdir -p '/Users/Shared/Renewed Vision Media/Images'
+mkdir -p '/Users/Shared/Renewed Vision Media/PDF'
+mkdir -p '/Users/Shared/Renewed Vision Media/Video'
+chown -R root:wheel '/Users/Shared/Renewed Vision Media'
+chmod -R a+rw '/Users/Shared/Renewed Vision Media'
+
+LIB='/Library/Application Support/RenewedVision'
+APP='/Applications/ProPresenter 5.app'
+mkdir -p '$LIB/Plugins'
+cp -a '$APP/Contents/Resources/RVCloudSync.app' '$LIB/'
+cp -a '$APP/Contents/PlugIns/'* '$LIB/Plugins/'
+
+defaults write /Library/Preferences/com.renewedvision.ProPresenter6.plist SUEnableAutomaticChecks -int 0
+exit 0</string>
+        </dict>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>0.2.0</string>
+    <key>ParentRecipe</key>
+    <string>com.github.cabal95.download.ProPresenter6</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Processor</key>
+            <string>MunkiPkginfoMerger</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pkg_path</key>
+                <string>%pathname%</string>
+                <key>repo_subdirectory</key>
+                <string>%MUNKI_REPO_SUBDIR%</string>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiImporter</string>
+        </dict>
+    </array>
+</dict>
+</plist>

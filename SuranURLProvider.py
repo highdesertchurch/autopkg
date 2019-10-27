@@ -10,7 +10,8 @@ from autopkglib import Processor, ProcessorError
 __all__ = ["SuranURLProvider"]
 
 FILE_INDEX_URL = 'http://download.cdmplus.com/cdm%s/catalog.txt'
-FILE_DOWNLOAD_URL = 'http://download.cdmplus.com/cdm%s/%s/cdm%s.pkg'
+#FILE_DOWNLOAD_URL = 'http://download.cdmplus.com/cdm%s/%s/cdm%s.pkg'
+FILE_DOWNLOAD_URL = 'http://download.cdmplus.com/cdm%s/current/cdm%s.pkg'
 
 class SuranURLProvider(Processor):
 	'''Provides URL to the latest file.'''
@@ -36,20 +37,21 @@ class SuranURLProvider(Processor):
 	description = __doc__
 
 	def get_suran_file_url(self, major_version):
-		catalogurl = FILE_INDEX_URL % major_version
+		#catalogurl = FILE_INDEX_URL % major_version
 
-		try:
-			f = urllib2.urlopen(catalogurl)
-			rss = f.read()
-			f.close()
-		except BaseException as e:
-			raise ProcessorError('Could not retrieve catalog %s' % catalogurl)
+		#try:
+		#	f = urllib2.urlopen(catalogurl)
+		#	rss = f.read()
+		#	f.close()
+		#except BaseException as e:
+		#	raise ProcessorError('Could not retrieve catalog %s' % catalogurl)
 
-		line = rss.split('\n', 1)[0]
-		version = line.split('\t')[0]
-		build = line.split('\t')[4]
+		#line = rss.split('\n', 1)[0]
+		#version = line.split('\t')[0]
+		#build = line.split('\t')[4]
 
-		return FILE_DOWNLOAD_URL % (major_version, build, major_version), version, build
+		#return FILE_DOWNLOAD_URL % (major_version, build, major_version), version, build
+		return FILE_DOWNLOAD_URL % (major_version, major_version), version
 
 	def main(self):
 		major_version  = self.env.get('CDM_MAJOR_VERSION')

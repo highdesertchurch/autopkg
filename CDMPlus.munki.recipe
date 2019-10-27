@@ -13,7 +13,7 @@
 		<key>NAME</key>
 		<string>CDM+</string>
 		<key>CDM_MAJOR_VERSION</key>
-		<string>10</string>
+		<string>102</string>
 		<key>pkginfo</key>
 		<dict>
 			<key>catalogs</key>

@@ -51,7 +51,7 @@ class SuranURLProvider(Processor):
 		#build = line.split('\t')[4]
 
 		#return FILE_DOWNLOAD_URL % (major_version, build, major_version), version, build
-		return FILE_DOWNLOAD_URL % (major_version, major_version), version
+		return FILE_DOWNLOAD_URL % (major_version, major_version), version, build
 
 	def main(self):
 		major_version  = self.env.get('CDM_MAJOR_VERSION')

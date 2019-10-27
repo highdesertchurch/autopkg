@@ -50,6 +50,10 @@ class SuranURLProvider(Processor):
 		#version = line.split('\t')[0]
 		#build = line.split('\t')[4]
 
+		#line = rss.split('\n', 1)[0]
+		version = 102
+		build = 102
+
 		#return FILE_DOWNLOAD_URL % (major_version, build, major_version), version, build
 		return FILE_DOWNLOAD_URL % (major_version, major_version), version, build
 
